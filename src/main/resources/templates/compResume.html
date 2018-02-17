@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+</head>
+<body>
+<div th:replace="fragments::navbarfragement"></div>
+
+
+<!--Person Table-->
+<h2>Person Detail:</h2>
+
+
+
+<!--<h4 th:inline="text"> Image: [[${person.image}]] </h4>
+<img th:src="${person.image}"/>
+-->
+<table>
+
+
+    <tr>
+        <th>Name</th>
+    </tr>
+    <tr th:each="person : ${persons}">
+        <td th:text="${person.name}"></td>
+    </tr>
+
+    <tr>
+        <th>Age</th>
+    </tr>
+    <tr th:each="person : ${persons}">
+        <td th:text="${person.age}"></td>
+    </tr>
+
+    <tr>
+        <th>Email</th>
+    </tr>
+    <tr th:each="person : ${persons}">
+        <td th:text="${person.email}"></td>
+
+        <a sec:authorize="hasAuthority('APPLICANT')" th:href="@{/updatePerson/{id}(id=${person.id})}">Update</a>
+    </tr>
+
+</table>
+
+<h2>Education </h2>
+
+<table>
+    <tr>
+        <th>Degree</th>
+    </tr>
+    <tr th:each="education : ${education}">
+        <td th:text="${education.degree}"></td>
+    </tr>
+
+    <tr>
+        <th>UnivName</th>
+    </tr>
+    <tr th:each="education : ${education}">
+        <td th:text="${education.univName}"></td>
+    </tr>
+    <tr>
+        <th>gradYear</th>
+    </tr>
+    <tr th:each="education : ${education}">
+        <td th:text="${education.gradYear}"></td>
+
+        <td>
+            <a sec:authorize="hasAuthority('APPLICANT')" th:href="@{/updateEducation/{id}(id=${education.id})}">Update</a>
+        </td>
+    </tr>
+</table>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<div th:replace="fragments::scripts"></div>
+</body>
+</html>

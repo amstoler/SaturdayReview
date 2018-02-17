@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+</head>
+<body>
+<div th:replace="fragments::navbarfragement"></div>
+
+<form th:action="@{/addEducation}" th:method="post" th:object="${education}">
+    <input type="hidden" th:field="*{id}" />
+
+    <label for="degree"> Degree</label>
+    <input type="text" id="degree" th:field="*{degree}"/>
+    <span th:if="${#fields.hasErrors('degree')}" th:errors="*{degree}"></span>
+
+    <label for="univName"> UnivName</label>
+    <input type="text" id="univName" th:field="*{univName}"/>
+    <span th:if="${#fields.hasErrors('univName')}" th:errors="*{univName}"></span>
+
+    <label for="gradYear"> gradYear</label>
+    <input type="text" id="gradYear" th:field="*{gradYear}"/>
+    <span th:if="${#fields.hasErrors('gradYear')}" th:errors="*{gradYear}"></span>
+
+    <input type="submit" value="Submit" class="btn btn-primary" />
+
+</form>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<div th:replace="fragments::scripts"></div>
+</body>
+</html>
